@@ -63,10 +63,11 @@ define('mu.api.plug', function (require) {
       chain     = require('mu.api.chain');
   
   var plug = function (socket, plugins) {
+    plugins = map(plugins, multiplex);
+    
     var plugged = function (/* arguments... */) {
-      var data = apply(socket, arguments),
-          plugins = isArray(data) ? map(plugins, multiplex) : plugins;
-          
+      var data = apply(socket, arguments);
+      if (!isArray(data)) { data = [data]; }
       return chain(plugins, data);
     };
     
