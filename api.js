@@ -56,9 +56,10 @@ define('mu.api.chain', function (require) {
 define('mu.api.plug', function (require) {
   'use strict';
   
-  var isArray = require('mu.is.array'),
-      apply   = require('mu.fn.apply'),
-      map     = require('mu.list.map');
+  var isArray   = require('mu.is.array'),
+      apply     = require('mu.fn.apply'),
+      map       = require('mu.list.map'),
+      multiplex = require('mu.api.multiplex');
   
   var plug = function (socket, plugins) {
     var plugged = function (/* arguments... */) {
