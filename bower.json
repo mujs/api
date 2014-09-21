@@ -1,0 +1,20 @@
+{
+  "name": "mu.api",
+  "description": "Collection of utilities for API development",
+  "version": "0.1.0",
+  "main": "api.js",
+  "dependencies": {
+    "define": "*",
+    "mu.is": "*",
+    "mu.fn": "*",
+    "mu.list": "*"
+  },
+  "keywords": [
+    "api",
+    "interface",
+    "multiplex",
+    "chain",
+    "plug"
+  ],
+  "license": "MIT"
+}
