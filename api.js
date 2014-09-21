@@ -25,7 +25,7 @@ define('mu.api.multiplex', function (require) {
 define('mu.api.chain', function (require) {
   'use strict';
   
-  var isDefined = require('mu.is.defiend'),
+  var isDefined = require('mu.is.defined'),
       apply     = require('mu.fn.apply'),
       partial   = require('mu.fn.partial'),
       map       = require('mu.list.map');
