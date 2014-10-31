@@ -42,6 +42,8 @@ define('mu.api.chain', function (require) {
         partials = argv;
         
     var chained = map(api, function (func) {
+      // func is partially applied with initial partials
+      // func === partial(func, partials...)
       func = apply(partial(partial, func), partials);
       
       var link = function () {
