@@ -1,18 +1,23 @@
 define('mu.api.multiplex', function (require) {
   'use strict';
   
-  var apply   = require('mu.fn.apply'),
-      partial = require('mu.fn.partial'),
-      each    = require('mu.list.each');
+  var isDefined = require('mu.is.defined'),
+      isArray   = require('mu.is.array'),
+      apply     = require('mu.fn.apply'),
+      partial   = require('mu.fn.partial'),
+      each      = require('mu.list.each');
   
   var multiplex = function (func) {
-    var multiplexed = function (/* arr, args... */) {
+    var multiplexed = function (/* context, args... */) {
       var argv = [].slice.call(arguments),
-          arr = argv.shift(),
+          context = argv.shift(),
           args = argv;
+
+      if (!isDefined(context)) { return; }
+      if (!isArray(context)) { context = [context]; }
           
-      return each(arr, function (item) {
-        return apply(partial(func, item), args);
+      return each(context, function (ctx) {
+        return apply(partial(func, ctx), args);
       });
     };
     
@@ -56,8 +61,7 @@ define('mu.api.chain', function (require) {
 define('mu.api.plug', function (require) {
   'use strict';
   
-  var isArray   = require('mu.is.array'),
-      apply     = require('mu.fn.apply'),
+  var apply     = require('mu.fn.apply'),
       map       = require('mu.list.map'),
       multiplex = require('mu.api.multiplex'),
       chain     = require('mu.api.chain');
@@ -67,7 +71,6 @@ define('mu.api.plug', function (require) {
     
     var plugged = function (/* arguments... */) {
       var data = apply(socket, arguments);
-      if (!isArray(data)) { data = [data]; }
       return chain(plugins, data);
     };
     
