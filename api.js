@@ -47,6 +47,7 @@ define('mu.api.chain', function (require) {
       func = apply(partial(partial, func), partials);
       
       var link = function () {
+        // value = func(partials..., arguments...)
         var value = apply(func, arguments);
         return isDefined(value) ? value : chained;
       };
