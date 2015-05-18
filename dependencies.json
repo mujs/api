@@ -1,6 +1,6 @@
 {
-  "pfraces/define": "master",
-  "mujs/mu.is": "master",
-  "mujs/mu.fn": "master",
-  "mujs/mu.list": "master"
+  "pfraces/define": "*",
+  "mujs/mu.is": "*",
+  "mujs/mu.fn": "*",
+  "mujs/mu.list": "*"
 }
