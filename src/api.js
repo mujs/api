@@ -82,13 +82,3 @@ define('mu.api.plug', function (require) {
   
   return plug;
 });
-
-define('mu.api', function (require) {
-  'use strict';
-  
-  return {
-    multiplex: require('mu.api.multiplex'),
-    chain:     require('mu.api.chain'),
-    plug:      require('mu.api.plug')
-  };
-});
