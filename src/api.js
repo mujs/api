@@ -66,18 +66,19 @@ define('mu.api.plug', function (require) {
   
   var apply     = require('mu.fn.apply'),
       map       = require('mu.list.map'),
+      merge     = require('mu.object.merge'),
       multiplex = require('mu.api.multiplex'),
       chain     = require('mu.api.chain');
   
-  var plug = function (socket, plugins) {
-    plugins = map(plugins, multiplex);
-    
-    var plugged = function (/* arguments... */) {
-      var data = apply(socket, arguments);
-      return chain(plugins, data);
+  var plug = function (socket, builtins) {
+    return function (plugins) {
+      plugins = map(merge(builtins, plugins), multiplex);
+      
+      return function (/* arguments... */) {
+        var data = apply(socket, arguments);
+        return chain(plugins, data);
+      };
     };
-    
-    return plugged;
   };
   
   return plug;
