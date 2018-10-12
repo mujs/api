@@ -51,5 +51,5 @@ returning the chain preventing `TypeError` exceptions
 dom('#nonexistent').foo().bar().qux();
 ```
 
-Assuming `foo`, `bar` and `qux` are loaded plugins, the previous code does
-nothing but don't crash
+Assuming `foo`, `bar` and `qux` are loaded plugins, the previous code doesn't
+crash
